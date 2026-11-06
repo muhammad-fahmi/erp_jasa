@@ -1,0 +1,18 @@
+services:
+  postgres-auth:
+    build:
+      context: .
+      dockerfile: server/db/Dockerfile
+    container_name: erp_jasa_auth_db
+    environment:
+      POSTGRES_USER: erp_admin
+      POSTGRES_PASSWORD: secure_password_123
+      POSTGRES_DB: erp_jasa_auth
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_auth_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_auth_data:
